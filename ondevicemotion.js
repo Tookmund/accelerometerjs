@@ -1,7 +1,7 @@
 function getMotion(event) {
-	var x = event.accelerationIncludingGravity.x;
-	var y = event.accelerationIncludingGravity.y;
-	var z = event.accelerationIncludingGravity.z;
+	var x = event.acceleration.x;
+	var y = event.acceleration.y;
+	var z = event.acceleration.z;
 	var str = "<p>X: "+x+"</p><p>Y: "+y+"</p><p>Z: "+z+"</p><p>Interval: "+event.interval;
 	console.log(str);
 	document.getElementById('acceldata').innerHTML = str;
