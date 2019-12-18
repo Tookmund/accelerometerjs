@@ -1,8 +1,16 @@
+var maxX = 0;
+var maxY = 0;
+var maxZ = 0;
 function getMotion(event) {
 	var x = event.acceleration.x;
 	var y = event.acceleration.y;
 	var z = event.acceleration.z;
-	var str = "<p>X: "+x+"</p><p>Y: "+y+"</p><p>Z: "+z+"</p><p>Interval: "+event.interval;
+	if (Math.abs(x) > Math.abs(maxX)) maxX = x;
+	if (Math.abs(y) > Math.abs(maxY)) maxY = y;
+	if (Math.abs(z) > Math.abs(maxZ)) maxZ = z;
+	var str = "<p>X: "+x+"</p><p>Y: "+y+"</p><p>Z: "+z+"</p><p>"+
+		"Interval: "+event.interval+
+		"<p>Max X: "+maxX+"</p><p>Max Y: "+maxY+"</p><p>Max Z: "+maxZ+"</p>";
 	console.log(str);
 	document.getElementById('acceldata').innerHTML = str;
 }
