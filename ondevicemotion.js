@@ -1,11 +1,18 @@
 var max = [0, 0, 0];
+var totalvel = [0, 0, 0];
+var numvels = 0;
+var time = 0;
 
 function getMotion(event) {
 	var accel = [event.acceleration.x, event.acceleration.y, event.acceleration.z];
 
 	for (var i in accel) {
 		if (Math.abs(accel[i]) > Math.abs(max[i])) max[i] = accel[i];
+		// Velocity = acceleration times the interval
+		totalvel[i] += accel[i]*event.interval;
+		numvels++;
 	}
+	time += event.interval;
 	document.getElementById('acceldata').innerHTML =
 		"<p>X: "+accel[0]+"</p><p>Y: "+accel[1]+"</p><p>Z: "+accel[2]+"</p><p>"+
 		"Interval: "+event.interval+
@@ -51,6 +58,12 @@ function endMotion() {
 	} catch(e) {
 		window.ondevicemotion = null;
 	}
+	var i = 0;
+	for (let m in max) {
+		if (max[m] > max[i]) i = m;
+	}
+	var dist = (totalvel[i]/numvels)*time;
+	document.getElementById("acceldata").innerHTML = "Distance: "+dist;
 	let req = document.getElementById("request");
 	req.onclick = requestMotion;
 	req.innerHTML = "Begin";
