@@ -1,17 +1,15 @@
-var maxX = 0;
-var maxY = 0;
-var maxZ = 0;
+var max = [0, 0, 0];
+
 function getMotion(event) {
-	var x = event.acceleration.x;
-	var y = event.acceleration.y;
-	var z = event.acceleration.z;
-	if (Math.abs(x) > Math.abs(maxX)) maxX = x;
-	if (Math.abs(y) > Math.abs(maxY)) maxY = y;
-	if (Math.abs(z) > Math.abs(maxZ)) maxZ = z;
+	var accel = [event.acceleration.x, event.acceleration.y, event.acceleration.z];
+
+	for (var i in accel) {
+		if (Math.abs(accel[i]) > Math.abs(max[i])) max[i] = accel[i];
+	}
 	document.getElementById('acceldata').innerHTML =
-		"<p>X: "+x+"</p><p>Y: "+y+"</p><p>Z: "+z+"</p><p>"+
+		"<p>X: "+accel[0]+"</p><p>Y: "+accel[1]+"</p><p>Z: "+accel[2]+"</p><p>"+
 		"Interval: "+event.interval+
-		"<p>Max X: "+maxX+"</p><p>Max Y: "+maxY+"</p><p>Max Z: "+maxZ+"</p>";
+		"<p>Max X: "+max[0]+"</p><p>Max Y: "+max[1]+"</p><p>Max Z: "+max[2]+"</p>";
 }
 
 // Device Motion request must come from a user-generated event
