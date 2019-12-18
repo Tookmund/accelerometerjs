@@ -23,7 +23,7 @@ function requestMotion() {
 		  req.innerHTML = "End";
 		  req.onclick = endMotion;
 	  } else {
-		  document.getElementById("log").innerHTML = "Need Device Motion!";
+		  document.getElementById("acceldata").innerHTML = "Need Device Motion!";
 	  }
 	});
 }
