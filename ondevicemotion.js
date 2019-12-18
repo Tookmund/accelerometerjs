@@ -12,10 +12,19 @@ function requestMotion() {
 	DeviceMotionEvent.requestPermission().then(response => {
 	  if (response == 'granted') {
 		  window.addEventListener("devicemotion", getMotion);
+		  let req =  document.getElementById("request");
+		  req.innerHTML = "End";
+		  req.onclick = endMotion;
 	  } else {
 		  document.getElementById("log").innerHTML = "Need Device Motion!";
 	  }
 	});
 }
-document.getElementById("acceldata").innerHTML = "<button id='request'>BEGIN</button>";
 document.getElementById("request").onclick = requestMotion;
+
+function endMotion() {
+	window.removeEventListener("devicemotion", getMotion);
+	let req = document.getElementById("request");
+	req.onclick = requestMotion;
+	req.innerHTML = "Begin";
+}
