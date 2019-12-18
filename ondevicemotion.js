@@ -7,7 +7,7 @@ function getMotion(event) {
 	document.getElementById('acceldata').innerHTML = str;
 }
 
-
+// Device Motion request must come from a user-generated event
 function requestMotion() {
 	DeviceMotionEvent.requestPermission().then(response => {
 	  if (response == 'granted') {
