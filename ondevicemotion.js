@@ -1,7 +1,15 @@
-var max = [0, 0, 0];
-var totalvel = [0, 0, 0];
-var numvels = 0;
-var time = 0;
+var max;
+var totalvel;
+var numvels;
+var time;
+
+function resetMotion() {
+	 max = [0, 0, 0];
+	 totalvel = [0, 0, 0];
+	 numvels = 0;
+	 time = 0;
+}
+
 
 function getMotion(event) {
 	var accel = [event.acceleration.x, event.acceleration.y, event.acceleration.z];
@@ -24,6 +32,7 @@ function requestMotion() {
 	try {
 		DeviceMotionEvent.requestPermission().then(response => {
 		  if (response == 'granted') {
+			  resetMotion();
 			  window.addEventListener("devicemotion", getMotion);
 			  let req =  document.getElementById("request");
 			  req.innerHTML = "End";
