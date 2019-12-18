@@ -2,12 +2,14 @@ var max;
 var totalvel;
 var numvels;
 var time;
+var prevvel;
 
 function resetMotion() {
-	 max = [0, 0, 0];
-	 totalvel = [0, 0, 0];
-	 numvels = 0;
-	 time = 0;
+	max = [0, 0, 0];
+	totalvel = [0, 0, 0];
+	numvels = 0;
+	time = 0;
+	prevvel = [0, 0, 0];
 }
 
 
@@ -17,7 +19,10 @@ function getMotion(event) {
 	for (var i in accel) {
 		if (Math.abs(accel[i]) > Math.abs(max[i])) max[i] = accel[i];
 		// Velocity = acceleration times the interval
-		totalvel[i] += accel[i]*event.interval;
+		// v_i = v_i-1+a_i*interval
+		let newvel = prevvel[i]+accel[i]*event.interval;
+		totalvel[i] += newvel;
+		prevvel[i] = newvel;
 		numvels++;
 	}
 	time += event.interval;
