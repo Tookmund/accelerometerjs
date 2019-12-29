@@ -1,3 +1,4 @@
+// https://www.wired.com/story/iphone-accelerometer-physics/
 var max;
 var totalvel;
 var numvels;
