@@ -8,7 +8,7 @@ var prevvel;
 function resetMotion() {
 	max = [0, 0, 0];
 	totalvel = [0, 0, 0];
-	numvels = 0;
+	numvels = 1;
 	time = 0;
 	prevvel = [0, 0, 0];
 }
