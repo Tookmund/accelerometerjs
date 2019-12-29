@@ -21,7 +21,7 @@ function getMotion(event) {
 		if (Math.abs(accel[i]) > Math.abs(max[i])) max[i] = accel[i];
 		// Velocity = acceleration times the interval
 		// v_i = v_i-1+a_i*interval
-		totalvel[i] += accel[i]*event.interval;
+		totalvel[i] += totalvel[i]+accel[i]*event.interval;
 	}
 
 	document.getElementById('acceldata').innerHTML =
