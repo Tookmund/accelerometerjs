@@ -3,14 +3,12 @@ var max;
 var totalvel;
 var numvels;
 var time;
-var prevvel;
 
 function resetMotion() {
 	max = [0, 0, 0];
 	totalvel = [0, 0, 0];
 	numvels = 1;
 	time = 0;
-	prevvel = [0, 0, 0];
 }
 
 
@@ -21,10 +19,8 @@ function getMotion(event) {
 		if (Math.abs(accel[i]) > Math.abs(max[i])) max[i] = accel[i];
 		// Velocity = acceleration times the interval
 		// v_i = v_i-1+a_i*interval
-		let newvel = prevvel[i]+accel[i]*event.interval;
-		totalvel[i] += newvel;
-		prevvel[i] = newvel;
 		numvels++;
+		totalvel[i] += accel[i]*event.interval;
 	}
 	time += event.interval;
 	document.getElementById('acceldata').innerHTML =
