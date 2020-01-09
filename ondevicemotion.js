@@ -62,7 +62,6 @@ function requestMotion() {
 		}
 	}
 }
-document.getElementById("request").onclick = requestMotion;
 
 function endMotion() {
 	try {
@@ -84,4 +83,8 @@ function endMotion() {
 	let req = document.getElementById("request");
 	req.onclick = requestMotion;
 	req.innerHTML = "Begin";
+}
+
+window.onload = function () {
+	document.getElementById("request").onclick = requestMotion;
 }
