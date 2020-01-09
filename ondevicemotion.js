@@ -32,10 +32,10 @@ function getMotion(event) {
 
 // Device Motion request must come from a user-generated event
 function requestMotion() {
+	resetMotion();
 	try {
 		DeviceMotionEvent.requestPermission().then(response => {
 		  if (response == 'granted') {
-			  resetMotion();
 			  window.addEventListener("devicemotion", getMotion);
 			  let req =  document.getElementById("request");
 			  req.innerHTML = "End";
