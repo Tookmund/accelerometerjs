@@ -37,9 +37,6 @@ function requestMotion() {
 		DeviceMotionEvent.requestPermission().then(response => {
 		  if (response == 'granted') {
 			  window.addEventListener("devicemotion", getMotion);
-			  let req =  document.getElementById("request");
-			  req.innerHTML = "End";
-			  req.onclick = endMotion;
 		  } else {
 			  document.getElementById("acceldata").innerHTML = "Need Device Motion!";
 		  }
@@ -58,9 +55,13 @@ function requestMotion() {
 			// Give up
 			catch (e) {
 				document.getElementById("acceldata").innerHTML = "No Access to device motion!";
+				return;
 			}
 		}
 	}
+	let req =  document.getElementById("request");
+	req.innerHTML = "End";
+	req.onclick = endMotion;
 }
 
 function endMotion() {
