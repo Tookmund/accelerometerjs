@@ -80,7 +80,7 @@ function endMotion() {
 		// x_i = x_i-1+average velocity*change in time
 		dist += avgvel*times[t];
 	}
-	document.getElementById("acceldata").innerHTML = "Distance: "+dist;
+	document.getElementById("result").innerHTML = "Distance: "+dist;
 	let req = document.getElementById("request");
 	req.onclick = requestMotion;
 	req.innerHTML = "Begin";
