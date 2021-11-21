@@ -23,6 +23,8 @@ function getMotion(event) {
 	times.push(event.interval);
 
 	for (var i in accel) {
+		// Ignore random gaussian noise
+		if (Math.abs(accel[i]) < 0.5) continue;
 		if (Math.abs(accel[i]) > Math.abs(max[i])) max[i] = accel[i];
 		// Velocity = acceleration times the interval
 		// v_i = v_i-1+a_i*interval
