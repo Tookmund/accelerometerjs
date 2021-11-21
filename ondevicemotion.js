@@ -4,11 +4,16 @@ var totalvel;
 var numvels;
 var times;
 
+var intsums;
+var inttime;
+
 function resetMotion() {
 	max = [0, 0, 0];
 	totalvel = [0, 0, 0];
 	numvels = 1;
 	times = [0];
+	intsums = [0, 0, 0];
+	inttime = 0;
 }
 
 
@@ -22,12 +27,23 @@ function getMotion(event) {
 		// Velocity = acceleration times the interval
 		// v_i = v_i-1+a_i*interval
 		totalvel[i] += totalvel[i]+accel[i]*event.interval;
+		intsums[i] += accel[i];
 	}
 
 	document.getElementById('acceldata').innerHTML =
 		"<p>X: "+accel[0]+"</p><p>Y: "+accel[1]+"</p><p>Z: "+accel[2]+"</p><p>"+
 		"Interval: "+event.interval+
 		"<p>Max X: "+max[0]+"</p><p>Max Y: "+max[1]+"</p><p>Max Z: "+max[2]+"</p>";
+
+	inttime += event.interval;
+	if (inttime > 5) {
+		document.getElementById('log').innerHTML += "<div>"+
+			"<p>X: "+intsums[0]+"</p>"+
+			"<p>Y: "+intsums[1]+"</p>"+
+			"<p>Z: "+intsums[2]+"</p></div>";
+		intsums = [0, 0, 0];
+		inttime = 0;
+	}
 }
 
 // Device Motion request must come from a user-generated event
