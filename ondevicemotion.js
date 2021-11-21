@@ -38,7 +38,7 @@ function getMotion(event) {
 		"<p>Max X: "+max[0]+"</p><p>Max Y: "+max[1]+"</p><p>Max Z: "+max[2]+"</p>";
 
 	inttime += event.interval;
-	if (inttime > 5) {
+	if (inttime > 500) {
 		document.getElementById('log').innerHTML += "<div>"+
 			"<p>X: "+intsums[0]+"</p>"+
 			"<p>Y: "+intsums[1]+"</p>"+
